@@ -41,4 +41,32 @@ Here I used [Stanford CoreNLP toolkit 3.8.0](https://stanfordnlp.github.io/CoreN
 java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
 ```
 
-In the script *wiki-corpus-prepare.py*, I used a [python wrapper](https://github.com/smilli/py-corenlp) of the Stanford CoreNLP server. 
+In the script *wiki-corpus-prepare.py*, I used a [python wrapper](https://github.com/smilli/py-corenlp) of the Stanford CoreNLP server so that we can manipulate the java server in python script. 
+
+### Word2vec training
+
+Once we get the processed wikipedia corpus ready, we can start the word2vec training. Here I used the [Google word2vec tool](https://code.google.com/archive/p/word2vec/), which is pretty standard and efficient. The tool is alrady in this repository, but in case you want to download the original one, you can find it [here](https://github.com/dav/word2vec).
+
+```
+./word2vec -train ../processed/wiki -output ../results/enwiki.skip.size300.win10.neg15.sample1e-5.min10.bin -cbow 0 -size 300 -window 10 -negative 15 -hs 0 -sample 1e-5 -threads 24 -binary 1 -min-count 10
+```
+
+## Evaluation of word embeddings
+
+After we well-train the word embeddings, we always want to evaluate the performance for quality check. Here I used the word relation test set described in [**Efficient Estimation of Word Representations in Vector Space**](https://arxiv.org/pdf/1301.3781.pdf) for performance test. 
+
+```
+./compute-accuracy ../results/enwiki.skip.size300.win10.neg15.sample1e-5.min15.bin < questions-words.txt
+```
+
+In my experiments, the vocabulary of word embeddings I obtained is 833,976 and the token number of the corpus is 2,333,367,969. I generated several word embedding files for different vector sizes: 50, 100, 200, 300 and 400. For each file, I provide the downloadable link and its word relation test performance in the following table:
+
+| vector size  | Word relation test performance (%)    |
+| :-----------:|:-------------------------------------:|
+| [50](https://www.dropbox.com/s/0wt41cdbzkcgm3n/enwiki.skip.size50.win10.neg15.sample1e-5.min15.bin?dl=0)   | 47.33 |
+| [100](https://www.dropbox.com/s/yojv8f3veqa83fa/enwiki.skip.size100.win10.neg15.sample1e-5.min15.bin?dl=0) | 54.94 |
+| [200](https://www.dropbox.com/s/fusknbh41n3763c/enwiki.skip.size200.win10.neg15.sample1e-5.min15.bin?dl=0) | 69.41 |
+| [300](https://www.dropbox.com/s/a6b5g7w369l1ngh/enwiki.skip.size300.win10.neg15.sample1e-5.min15.bin?dl=0) | 71.29 |
+| [400](https://www.dropbox.com/s/qqvclvjt4t2diw7/enwiki.skip.size400.win10.neg15.sample1e-5.min15.bin?dl=0) | 71.80 |
+
+As you can see, the vector size can influence the word relation test performance, and within a certain range, the larger vector size, the better performance.
