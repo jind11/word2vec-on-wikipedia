@@ -63,10 +63,10 @@ In my experiments, the vocabulary of word embeddings I obtained is 833,976 and t
 
 | vector size  | Word relation test performance (%)    |
 | :-----------:|:-------------------------------------:|
-| [50](https://www.dropbox.com/s/0wt41cdbzkcgm3n/enwiki.skip.size50.win10.neg15.sample1e-5.min15.bin?dl=0)   | 47.33 |
-| [100](https://www.dropbox.com/s/yojv8f3veqa83fa/enwiki.skip.size100.win10.neg15.sample1e-5.min15.bin?dl=0) | 54.94 |
-| [200](https://www.dropbox.com/s/fusknbh41n3763c/enwiki.skip.size200.win10.neg15.sample1e-5.min15.bin?dl=0) | 69.41 |
-| [300](https://www.dropbox.com/s/a6b5g7w369l1ngh/enwiki.skip.size300.win10.neg15.sample1e-5.min15.bin?dl=0) | 71.29 |
-| [400](https://www.dropbox.com/s/qqvclvjt4t2diw7/enwiki.skip.size400.win10.neg15.sample1e-5.min15.bin?dl=0) | 71.80 |
+| [50](https://drive.google.com/open?id=1OeJNyl1SUoH8XUhKsJYKkSixeEVwCe-h)   | 47.33 |
+| [100](https://drive.google.com/open?id=16CaxHtytsw-kfsQd0CVxukSe1oTnj7B_) | 54.94 |
+| [200](https://drive.google.com/open?id=1tjCPsisG9mLCyRPDVFa4W9boBDXALOGL) | 69.41 |
+| [300](https://drive.google.com/open?id=1NEHKLFQ2z4cYsdbFxEeU0UCjlDDx_tal) | 71.29 |
+| [400](https://drive.google.com/open?id=1mJG-28ay__bTKHGIxeShM2wGKOdzI2M3) | 71.80 |
 
 As you can see, the vector size can influence the word relation test performance, and within a certain range, the larger vector size, the better performance.
